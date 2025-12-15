@@ -1,0 +1,294 @@
+/* Minimal, clean, GitHub-Pages-friendly CSS (no build step). */
+
+:root{
+  --Bg: #0b0f17;
+  --Card: #111827;
+  --Text: #e5e7eb;
+  --Muted: #a1a1aa;
+  --Border: rgba(255,255,255,0.10);
+  --Shadow: 0 12px 30px rgba(0,0,0,0.35);
+  --Accent: #60a5fa;
+  --Accent2: #34d399;
+  --Danger: #fb7185;
+  --Input: rgba(255,255,255,0.06);
+}
+
+[data-theme="light"]{
+  --Bg: #f6f7fb;
+  --Card: #ffffff;
+  --Text: #0b1220;
+  --Muted: #5b6576;
+  --Border: rgba(0,0,0,0.10);
+  --Shadow: 0 12px 30px rgba(16,24,40,0.12);
+  --Accent: #2563eb;
+  --Accent2: #059669;
+  --Danger: #e11d48;
+  --Input: rgba(0,0,0,0.04);
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(96,165,250,0.25), transparent 60%),
+              radial-gradient(900px 500px at 110% 10%, rgba(52,211,153,0.18), transparent 55%),
+              var(--Bg);
+  color:var(--Text);
+}
+
+code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+}
+
+.Header{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--Border);
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--Bg) 70%, transparent);
+}
+
+.HeaderInner{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 14px;
+}
+
+.Brand{ display:flex; align-items:center; gap: 12px; }
+.Logo{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display:grid;
+  place-items:center;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--Accent) 55%, transparent), color-mix(in srgb, var(--Accent2) 45%, transparent));
+  box-shadow: var(--Shadow);
+  border: 1px solid var(--Border);
+  font-weight: 800;
+}
+.BrandText h1{
+  margin:0;
+  font-size: 16px;
+  line-height: 1.2;
+}
+.BrandText p{
+  margin: 2px 0 0 0;
+  color: var(--Muted);
+  font-size: 13px;
+}
+
+.HeaderActions{ display:flex; align-items:center; gap: 10px; }
+
+.Main{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 18px 50px;
+  display:flex;
+  flex-direction:column;
+  gap: 18px;
+}
+
+.Card{
+  background: var(--Card);
+  border: 1px solid var(--Border);
+  border-radius: 18px;
+  box-shadow: var(--Shadow);
+  overflow:hidden;
+}
+
+.CardHeader{
+  padding: 16px 16px 10px;
+  border-bottom: 1px solid var(--Border);
+}
+.CardHeader h2{
+  margin:0;
+  font-size: 16px;
+}
+.CardHeader p{
+  margin: 6px 0 0;
+  color: var(--Muted);
+  font-size: 13px;
+}
+
+.Row{
+  padding: 14px 16px;
+  display:flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items:end;
+}
+
+.Grid2{
+  padding: 14px 16px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 800px){
+  .Grid2{ grid-template-columns: 1fr; }
+}
+
+.Label{
+  display:flex;
+  flex-direction:column;
+  gap: 6px;
+  min-width: 240px;
+  flex: 1;
+}
+.Label span{
+  font-size: 12px;
+  color: var(--Muted);
+}
+
+.Input, .Select{
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--Border);
+  background: var(--Input);
+  color: var(--Text);
+  outline: none;
+}
+.Input:focus, .Select:focus{
+  border-color: color-mix(in srgb, var(--Accent) 55%, var(--Border));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--Accent) 20%, transparent);
+}
+
+.Btn{
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--Accent) 55%, var(--Border));
+  background: color-mix(in srgb, var(--Accent) 25%, var(--Input));
+  color: var(--Text);
+  cursor: pointer;
+  font-weight: 650;
+}
+.Btn:hover{ filter: brightness(1.05); }
+.Btn:active{ transform: translateY(1px); }
+
+.BtnGhost{
+  border-color: var(--Border);
+  background: var(--Input);
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.StatsRow{
+  padding: 0 16px 14px;
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.StatPill{
+  border: 1px solid var(--Border);
+  background: var(--Input);
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--Muted);
+}
+
+.TableWrap{
+  overflow:auto;
+  border-top: 1px solid var(--Border);
+}
+
+.Table{
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+.Table th, .Table td{
+  text-align:left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--Border);
+  font-size: 13px;
+}
+.Table th{
+  font-size: 12px;
+  color: var(--Muted);
+  background: color-mix(in srgb, var(--Card) 88%, transparent);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.CopyBtn{
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--Border);
+  background: var(--Input);
+  color: var(--Text);
+  cursor:pointer;
+  font-weight: 650;
+}
+.CopyBtn:hover{ border-color: color-mix(in srgb, var(--Accent2) 55%, var(--Border)); }
+
+.Muted{ color: var(--Muted); }
+
+.CalcOutput{
+  padding: 14px 16px 18px;
+  border-top: 1px solid var(--Border);
+}
+
+.CalcPlaceholder{
+  color: var(--Muted);
+  font-size: 13px;
+}
+
+.CalcGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 800px){
+  .CalcGrid{ grid-template-columns: 1fr; }
+}
+
+.CalcCard{
+  border: 1px solid var(--Border);
+  background: var(--Input);
+  border-radius: 14px;
+  padding: 12px 12px;
+}
+
+.CalcCard h3{
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: var(--Muted);
+  font-weight: 700;
+}
+.CalcCard .Big{
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.BadgeOk{
+  color: color-mix(in srgb, var(--Accent2) 80%, var(--Text));
+}
+.BadgeWarn{
+  color: color-mix(in srgb, var(--Danger) 85%, var(--Text));
+}
+
+.Footer{
+  margin-top: 2px;
+}
+.FooterInner{
+  padding: 10px 4px 0;
+  display:flex;
+  justify-content:space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  color: var(--Muted);
+  font-size: 12px;
+}
