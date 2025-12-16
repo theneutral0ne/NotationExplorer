@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scientific Notation ↔ Abbreviation Explorer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="Header">
+    <div class="HeaderInner">
+      <div class="Brand">
+        <div class="BrandMark">10</div>
+        <div class="BrandText">
+          <div class="BrandTitle">Notation Explorer</div>
+          <div class="BrandSubtitle">Search abbreviations and scientific notation (e.g., <span class="Mono">1Qa</span> ↔ <span class="Mono">1e15</span>)</div>
+        </div>
+      </div>
+
+      <div class="HeaderTools">
+        <input id="SearchInput" class="Input" placeholder="Search: 1Qa, Qa, 1e15, e15, 1Sp..." autocomplete="off" />
+        <button id="ClearSearchButton" class="Button ButtonGhost" type="button">Clear</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="Main">
+    <section class="Card">
+      <div class="CardHeader">
+        <h2>Lookup</h2>
+        <p>Type an abbreviation or scientific notation to see its counterpart.</p>
+      </div>
+
+      <div class="Grid2">
+        <div>
+          <label class="Label" for="LookupInput">Input</label>
+          <input id="LookupInput" class="Input" placeholder="Examples: 32Qi, 0.5Qa, 1No, 1e30" autocomplete="off" />
+          <div class="HelpText">Tip: You can enter a coefficient (like <span class="Mono">32Qi</span>) and you can also omit the leading <span class="Mono">1</span> (e.g., <span class="Mono">No</span> or <span class="Mono">e30</span>).</div>
+        </div>
+
+        <div>
+          <label class="Label">Result</label>
+          <div id="LookupResult" class="ResultBox">
+            <div class="ResultLine"><span class="ResultKey">Abbreviation</span><span class="ResultValue Mono" id="LookupAbbr">—</span></div>
+            <div class="ResultLine"><span class="ResultKey">Scientific</span><span class="ResultValue Mono" id="LookupSci">—</span></div>
+            <div class="ResultLine"><span class="ResultKey">Exponent</span><span class="ResultValue Mono" id="LookupExp">—</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="Card">
+      <div class="CardHeader">
+        <h2>Calculator</h2>
+        <p>Compare two notations, and compute simple operations using exponents. This stays stable even up to <span class="Mono">1e9999</span>.</p>
+      </div>
+
+      <div class="Grid2">
+        <div>
+          <label class="Label" for="CalcAInput">A</label>
+          <input id="CalcAInput" class="Input" placeholder="Example: 1Qa or 1e15" autocomplete="off" />
+        </div>
+        <div>
+          <label class="Label" for="CalcBInput">B</label>
+          <input id="CalcBInput" class="Input" placeholder="Example: 1D or 1e33" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="CalcRow">
+        <div class="CalcButtons">
+          <button class="Button" id="CalcCompareButton" type="button">Compare</button>
+          <button class="Button ButtonGhost" id="CalcDiffButton" type="button">A − B</button>
+          <button class="Button ButtonGhost" id="CalcAddButton" type="button">A + B</button>
+          <button class="Button ButtonGhost" id="CalcMulButton" type="button">A × B</button>
+          <button class="Button ButtonGhost" id="CalcDivButton" type="button">A ÷ B</button>
+        </div>
+      </div>
+
+      <div id="CalcResult" class="ResultBox">
+        <div class="ResultLine"><span class="ResultKey">Parsed A</span><span class="ResultValue Mono" id="CalcParsedA">—</span></div>
+        <div class="ResultLine"><span class="ResultKey">Parsed B</span><span class="ResultValue Mono" id="CalcParsedB">—</span></div>
+        <div class="Divider"></div>
+        <div class="ResultLine"><span class="ResultKey">Result</span><span class="ResultValue Mono" id="CalcOutput">—</span></div>
+        <div class="ResultLine"><span class="ResultKey">Notes</span><span class="ResultValue" id="CalcNotes">—</span></div>
+      </div>
+
+      <details class="Details">
+        <summary>How results are computed</summary>
+        <div class="DetailsBody">
+          <ul>
+            <li>Inputs are interpreted as <span class="Mono">Coefficient × 10^Exponent</span>.</li>
+            <li>The file mapping is used for known suffixes (like <span class="Mono">Qa</span>, <span class="Mono">Oc</span>, <span class="Mono">MiQi</span>, etc.).</li>
+            <li>For huge magnitudes, arithmetic is displayed in normalized scientific form with a safe precision (so the UI never freezes).</li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <section class="Card">
+      <div class="CardHeader">
+        <h2>Table</h2>
+        <p>Browse all mappings. Use the search bar at the top to filter.</p>
+      </div>
+
+      <div class="TableMeta">
+        <div id="TableCount" class="Muted">Loading…</div>
+        <div class="Pager">
+          <button id="PrevPageButton" class="Button ButtonGhost" type="button">Prev</button>
+          <div class="Mono" id="PageLabel">—</div>
+          <button id="NextPageButton" class="Button ButtonGhost" type="button">Next</button>
+        </div>
+      </div>
+
+      <div class="TableWrap" role="region" aria-label="Notation table">
+        <table class="Table">
+          <thead>
+            <tr>
+              <th>Abbreviation</th>
+              <th>Scientific</th>
+              <th>Exponent</th>
+            </tr>
+          </thead>
+          <tbody id="TableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="Footer">
+      <div class="Muted">
+        Data loaded from <span class="Mono">numbers.txt</span> and rendered locally (no server required).
+      </div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

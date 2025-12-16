@@ -1,0 +1,281 @@
+
+:root {
+  --Bg: #0b0c10;
+  --Card: #12141b;
+  --Card2: #0f1117;
+  --Text: #e9ecf1;
+  --Muted: #aab3c3;
+  --Border: rgba(255,255,255,0.09);
+  --Border2: rgba(255,255,255,0.14);
+  --Accent: #7aa2ff;
+  --Accent2: #9d7bff;
+  --Shadow: 0 10px 30px rgba(0,0,0,0.35);
+  --Radius: 16px;
+  --Radius2: 22px;
+  --Mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --Sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--Sans);
+  background: radial-gradient(1200px 800px at 15% 0%, rgba(122,162,255,0.18), transparent 60%),
+              radial-gradient(900px 600px at 85% 20%, rgba(157,123,255,0.16), transparent 55%),
+              var(--Bg);
+  color: var(--Text);
+}
+
+.Mono { font-family: var(--Mono); }
+.Muted { color: var(--Muted); }
+
+.Header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(11, 12, 16, 0.65);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--Border);
+}
+
+.HeaderInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-width: 280px;
+}
+
+.BrandMark {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, rgba(122,162,255,0.35), rgba(157,123,255,0.35));
+  border: 1px solid var(--Border2);
+  box-shadow: var(--Shadow);
+}
+
+.BrandTitle {
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.BrandSubtitle {
+  font-size: 12px;
+  color: var(--Muted);
+}
+
+.HeaderTools {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: min(520px, 100%);
+}
+
+.Main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 22px 16px 46px 16px;
+  display: grid;
+  gap: 16px;
+}
+
+.Card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px solid var(--Border);
+  border-radius: var(--Radius2);
+  box-shadow: var(--Shadow);
+  padding: 16px;
+}
+
+.CardHeader h2 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+}
+
+.CardHeader p {
+  margin: 0 0 14px 0;
+  color: var(--Muted);
+  font-size: 13px;
+}
+
+.Label {
+  display: block;
+  font-size: 12px;
+  color: var(--Muted);
+  margin-bottom: 6px;
+}
+
+.Input {
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--Border2);
+  background: rgba(10, 11, 15, 0.65);
+  color: var(--Text);
+  outline: none;
+  transition: border-color 0.15s ease, transform 0.1s ease;
+}
+
+.Input:focus {
+  border-color: rgba(122,162,255,0.6);
+}
+
+.Button {
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(122,162,255,0.35);
+  background: linear-gradient(135deg, rgba(122,162,255,0.22), rgba(157,123,255,0.18));
+  color: var(--Text);
+  cursor: pointer;
+  transition: transform 0.08s ease, border-color 0.15s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.Button:hover { transform: translateY(-1px); border-color: rgba(122,162,255,0.55); }
+.Button:active { transform: translateY(0px); }
+
+.ButtonGhost {
+  background: rgba(10, 11, 15, 0.35);
+  border: 1px solid var(--Border2);
+}
+
+.Grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 860px) {
+  .HeaderInner { flex-direction: column; align-items: stretch; }
+  .Brand { min-width: 0; }
+  .HeaderTools { width: 100%; }
+  .Grid2 { grid-template-columns: 1fr; }
+}
+
+.HelpText {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--Muted);
+}
+
+.ResultBox {
+  border: 1px solid var(--Border);
+  background: rgba(10, 11, 15, 0.35);
+  border-radius: var(--Radius);
+  padding: 12px;
+}
+
+.ResultLine {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+}
+
+.ResultKey {
+  color: var(--Muted);
+  font-size: 12px;
+  min-width: 110px;
+}
+
+.ResultValue {
+  font-size: 13px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.Divider {
+  height: 1px;
+  background: var(--Border);
+  margin: 8px 0;
+}
+
+.CalcRow {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.CalcButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.TableMeta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.Pager {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.TableWrap {
+  overflow: auto;
+  border-radius: var(--Radius);
+  border: 1px solid var(--Border);
+}
+
+.Table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+.Table thead th {
+  text-align: left;
+  font-size: 12px;
+  color: var(--Muted);
+  background: rgba(10, 11, 15, 0.55);
+  border-bottom: 1px solid var(--Border);
+  padding: 10px 10px;
+  position: sticky;
+  top: 0;
+}
+
+.Table tbody td {
+  padding: 10px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 13px;
+}
+
+.Table tbody tr:hover td {
+  background: rgba(122,162,255,0.06);
+}
+
+.Footer {
+  padding: 8px 2px 0 2px;
+}
+.Details summary {
+  cursor: pointer;
+  color: var(--Muted);
+  margin-top: 10px;
+}
+.DetailsBody {
+  margin-top: 10px;
+  color: var(--Muted);
+  font-size: 13px;
+}
